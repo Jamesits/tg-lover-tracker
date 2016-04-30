@@ -341,7 +341,7 @@ def replace_dt_hours(fromdatetime, hours):
 
 def midnight_delta(fromdatetime, adjust=True):
     fromtimestamp = fromdatetime.timestamp()
-    midnight = datetime.datetime.combine(fromdatetime, 
+    midnight = datetime.datetime.combine(fromdatetime,
         datetime.time(tzinfo=fromdatetime.tzinfo)).timestamp()
     delta = fromtimestamp - midnight
     if adjust and delta > 43200:
@@ -492,7 +492,7 @@ def all_status_update():
         if start and interval:
             CONN.execute('REPLACE INTO sleep (user, time, duration) VALUES (?,?,?)',
                      (user, start, interval))
-    CONN.execute('DELETE FROM events WHERE time < ?', (expires,))
+    # CONN.execute('DELETE FROM events WHERE time < ?', (expires,))
     CONN.execute('DELETE FROM sleep WHERE duration > ?', (CFG['threshold'],))
     return stats
 
